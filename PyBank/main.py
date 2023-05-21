@@ -26,6 +26,7 @@ print("---------------------------------------")
 #calculated total montshs
 with open(budget_csv) as csvfile:
     csvreader=csv.reader(csvfile, delimiter=",")
+    #skips header
     next(csvreader)
     for row in csvreader:
         date = row[0]
