@@ -40,7 +40,9 @@ with open(budget_csv) as csvfile:
     for row in csvreader:
         profitlosses=int(row[1])
         Total += profitlosses
-print("Total: ", Total)
+        #adding $ signs
+        Total_Dollars = "${:,.0f}".format(Total)
+print("Total: ", Total_Dollars)
 
 #calculate average change, you got this!!! Ask one of TA's to review to see if i'm doing too many extra steps
 with open(budget_csv) as csvfile:
@@ -75,7 +77,9 @@ with open(budget_csv) as csvfile:
             Greatest_Increase_Month = date
 
         Previous_Value = Amount
-print(f"Greatest Increase in Profits: {Greatest_Increase_Month} ({Greatest_Increase})")
+        #adding dollar signs
+        greatest_increase_dollars = "${:,.0f}".format(Greatest_Increase)
+print(f"Greatest Increase in Profits: {Greatest_Increase_Month} ({greatest_increase_dollars})")
 
 #finding the greatest decrease in profits, including the date and $
 with open(budget_csv) as csvfile:
@@ -92,8 +96,9 @@ with open(budget_csv) as csvfile:
             Greatest_Decrease_Month = date
         
         Previous_Value = Amount
-
-print(f"Greatest Decrease in Profits: {Greatest_Decrease_Month} ({Greatest_Decrease})")
+        #adding $$ signs
+        greatest_decrease_dollars = "${:,.0f}".format(Greatest_Decrease)
+print(f"Greatest Decrease in Profits: {Greatest_Decrease_Month} ({greatest_decrease_dollars})")
 
 #trying to export the analysis 
 
@@ -102,13 +107,14 @@ PyBank_Export_File = "PyBank_Analysis.txt"
 export_path = os.path.join(".", "analysis", PyBank_Export_File)
 
 with open(export_path, "w") as file:
-    file.write("Financial Analysis")
-    file.write("----------------------------")
-    file.write(f"Total Months: {Total_Months}")
-    file.write(f"Total: {Total}")
-    file.write(f"Average Change: {Average_Change_Dollars}")
-    file.write(f"Greatest Increase in Profits: {Greatest_Increase_Month} ({Greatest_Increase})")
-    file.write(f"Greatest Decrease in Profits: {Greatest_Decrease_Month} ({Greatest_Decrease})")
+    #after finishing pypoll, finally figured out the line break, writing here and finishing later (\n) and place before end of ""
+    file.write("Financial Analysis\n")
+    file.write("----------------------------\n")
+    file.write(f"Total Months: {Total_Months}\n")
+    file.write(f"Total: {Total_Dollars}\n")
+    file.write(f"Average Change: {Average_Change_Dollars}\n")
+    file.write(f"Greatest Increase in Profits: {Greatest_Increase_Month} ({greatest_increase_dollars})\n")
+    file.write(f"Greatest Decrease in Profits: {Greatest_Decrease_Month} ({greatest_decrease_dollars})\n")
         
   #finished!!! the above code  export a text file to the analsysis folder in PyBank, if have extra time, try and break up the text to make it look nicer      
-
+# just realized i don't have dollar signs on total, greatest increase, or greatest decrease, if i have time i will add, it is on average change so i should be able to easily copy/paste
